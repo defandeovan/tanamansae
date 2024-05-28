@@ -1,0 +1,56 @@
+:root{
+    --primary: #0D986A;
+}
+body{
+    font-family: 'Montserrat';
+}
+.nav{
+ display: flex;
+ justify-content: space-between;
+}
+.back{
+    background-color: #0D986A;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    text-align: center;
+}
+.icon{
+    color: white;
+    margin-top: 2px;
+}
+.brand{
+    display: flex;
+    align-items: center;
+}
+.brand img{
+    width: 50px;
+}
+.brand h1{
+    color: var(--primary);
+    font-family: 'Montserrat';
+    font-size: 20px;
+}
+.judul{
+    font-family: 'Montserrat';
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+.konten{
+    display: flex;
+    align-items: center;
+    margin-left: 400px;
+    gap: 5px;
+}
+.k1{
+    
+    width: 150px;
+}
+.k2{
+    width: 400px;
+
+}
+.k3{
+    width: 150px;
+}

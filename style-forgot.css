@@ -1,0 +1,55 @@
+body{
+    background-color: aqua;
+    padding: 10px;
+    font-family: 'Montserrat';
+}
+
+.container{
+    max-width: 400px;
+    height: 500px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin-top: 100px;
+}
+.input-group{
+    border-radius:7px;
+    text-align: center;
+    margin: auto;
+    
+}
+h1{ 
+    text-align: center;
+    font-family:'Montserrat' ;
+}
+.input-group input{
+    border-radius: 5px;
+    
+    height: 30px;
+    
+}
+.enter{
+    margin: auto;
+}
+
+.Confirm  {
+    margin: auto;
+    margin-top: 30px;
+}
+
+
+button{
+    width: 120px;
+}
+.reset{
+    height: 20px;
+background-color: #0D986A ;
+color: white;
+height: 30px;
+margin-top: 50px;
+font-family:'Montserrat' ;
+font-weight: bold;
+cursor: pointer;
+}

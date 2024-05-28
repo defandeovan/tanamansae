@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&family=Actor&family=Asap:ital,wght@0,100..900;1,100..900&family=Bangers&family=Berkshire+Swash&family=Gloria+Hallelujah&family=IM+Fell+English:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">   
+    <link rel="stylesheet" href="style-register.css">
+    <title>Register</title>
+</head>
+<body>
+   <div class="container">
+    <h1>Create Account</h1>
+    <form id="register-form">
+        <div class="input-group">
+            <span class="icon"><i data-feather="user"></i></span>
+            <input type="text" placeholder="Username">
+        </div>
+        <div class="input-group">
+            <span class="icon"><i data-feather="mail"></i></span>
+            <input type="email" placeholder="Email">
+        </div>
+        <div class="input-group">
+            <span class="icon"><i data-feather="phone"></i></span>
+            <input type="tel" id="phone" name="nn" placeholder="Phone Number" pattern="[0-9]{10,15}" required>
+        </div>
+        <div class="input-group">
+            <span class="icon"><i data-feather="lock"></i></span>
+            <input type="password" placeholder="Password">
+        </div>
+        <div class="input-group">
+            <span class="icon"><i data-feather="lock"></i></span>
+            <input type="password" placeholder="Confirm Password">
+        </div>
+        <div class="tc">
+            <input type="checkbox" required>
+            <label for="">I agree to <a href="" >the Terms and Conditions</a></label>
+        </div>
+        <div class="button-container">
+            <button type="submit">Register</button>
+        </div>
+        <div class="already">
+            <p>Already have an account? <a href="login.html">Log in</a></p>
+        </div>
+    </form>
+   </div>
+
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        feather.replace();
+    </script>
+    <script>
+        document.getElementById('').addEventListener('submit', function(event) {
+            const phoneInput = document.getElementById('phone');
+            const phonePattern = /^[0-9]{10,15}$/;
+
+            if (!phonePattern.test(phoneInput.value)) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
