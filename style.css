@@ -1,0 +1,151 @@
+:root{
+    --primary: #0D986A;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+body{
+ 
+    background-image: url("img/6265983.jpg");
+    background-size: cover; 
+    background-position: center;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px 100px;
+    width: 100%;
+    position: fixed;
+    font-family: "Montserrat";
+    font-style: italic;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+.navbar a{
+    color: whitesmoke;
+    margin-left: 40px;
+    font-size: 20px;
+    font-weight: 500;
+}
+h1{
+    color: #ffffff;
+    font-family: "Montserrat";
+    font-size: 20px;
+}
+
+.judul{
+    color: #ffffff;
+    font-family: "Montserrat";
+    font-size: 75px;
+    font-weight: bold;
+}
+.ID{
+    color: #ffffff;
+    font-family: "Montserrat";
+    font-size: 75px;
+    font-weight: bold;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white; 
+}
+.navbar .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.container{
+    margin-top: 200px;
+    margin-left: 100px;
+}
+.deskripsi{
+    color: #ffffff;
+    font-family: "Montserrat";
+}
+.content-wrapper {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.article-wrapper {
+    display: flex;
+    flex: 2;
+    gap: 20px;
+    margin-left: 25px;
+}
+article img{
+    width: 180px;
+    height: 150px;
+    margin-left: 0;
+}
+article {
+    flex: 1;
+    
+    text-align: center;
+    background-color: #ffffff;
+    padding: 10px;
+    max-width: 200px;
+    margin-right: 5px;
+}
+.konten h2{
+    font-family: "Montserrat";
+    font-weight: bold;
+    font-family: 20;
+}
+.konten p{
+    font-family: "Montserrat";
+    font-size: 10px;
+}
+.jb{
+    font-size: 25px;
+}
+.ag{
+    margin-top: 30px;
+}
+
+.button-gabung{
+    margin-top: 30px;
+    margin-left: 100px;
+}
+.button-gabung button{
+    font-size: large;
+    background-color: var(--primary);
+    border: 0;
+    padding: 10px 50px;
+    color: white;
+    font-family: "Montserrat";
+    font-weight: bold;
+    border-radius: 8px;
+}
+.button-login{
+    font-size: large;
+    background-color: var(--primary);
+    border: 0;
+    padding: 10px 50px;
+    color: white;
+    font-family: "Montserrat";
+    font-weight: bold;
+    border-radius: 8px;
+}
+.read{
+    margin-top: 15px;
+    background-color: var(--primary);
+    border: 0;
+    padding: 10px 20px;
+    color: white;
+    font-family: "Montserrat";
+    font-weight: bold;
+    border-radius: 8px;
+}
+#Home:hover{
+    color: aquamarine;
+}
