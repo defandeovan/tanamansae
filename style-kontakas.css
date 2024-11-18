@@ -1,0 +1,85 @@
+body {
+    font-family: 'Montserrat';
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    background-image: url(img/backreglog.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.container-main {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    margin-top: 250px;
+}
+
+.profile-form h3 {
+    margin-top: 0;
+}
+
+.profile-form label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="email"],
+.profile-form textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    font-family: "Montserrat";
+    background-color: #0D986A;
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    font-size: large;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+    margin-top: 20px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+@media (min-width: 600px) {
+    .container-main {
+        margin-top: 150px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container-main {
+        margin-top: 100px;
+    }
+    
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+    
+    .input {
+        width: 100%;
+    }
+}

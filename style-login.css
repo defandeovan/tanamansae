@@ -1,0 +1,168 @@
+* {
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Montserrat';
+    padding: 10px;
+    background-image: url("img/backreglog.jpg");
+    background-size: cover; 
+    background-position: center;
+}
+
+.container {
+    max-width: 400px;
+    height: 500px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin-top: 100px;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color: #0D986A;
+}
+
+.alert-failed {
+    margin-left: 10px;
+    width: 320px;
+    height: 30px;
+    padding: 10px 10px 10px 40px;
+    background-color: rgb(255, 158, 158);
+    margin-bottom: 15px;
+    font-family: "Montserrat";
+    display: flex;
+    align-items: center;
+    color: #e61818;
+    position: relative;
+    font-weight: 400;
+    font-size: 14px;
+    border-left: 10px solid #e61818;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+
+.alert {
+    color: rgb(255, 158, 158);
+    background-color: #e61818;
+    margin-right: 5px;
+    border-radius: 100%;
+}
+
+.x {
+    right: 0;
+    margin-left: 3px;
+    border-color: #e61818;
+}
+
+.alert-failed {
+    animation: show_slide 1s ease forwards
+}
+
+@keyframes show_slide {
+    0% {
+        transform: translateX(5%);
+    }
+    40% {
+        transform: translateX(-5%);
+    }
+    80% {
+        transform: translateY(0%);
+    }
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: flex;
+    /* Add additional styles to make the alert visible */
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.input-group .icon {
+    color: #787878;
+    position: absolute;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+   
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #787878;
+}
+
+.input-group input:focus {
+    border-color: #66afe9;
+    outline: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; 
+    margin-top: 20px;
+}
+
+button {
+    font-family: 'Montserrat';
+    font-weight: bold;
+    width: 120px;
+    padding: 10px;
+    background-color: #0D986A;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 25px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.Remember-me {
+    display: flex;
+}
+
+.container-me {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Montserrat';
+    color: #787878;
+}
+
+.Register {
+    font-family: 'Montserrat';
+    text-align: center;
+    color: #787878;
+}
+
+.Sign-in {
+    color: #0056b3;
+    font-weight: 550;
+}
+.icon {
+    color: #787878; 
+    width: 24px;
+    height: 24px;
+}
