@@ -1,0 +1,514 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #E2F1E7;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #387478;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    margin-right: 10px;
+}
+
+header .logo h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+header .search-container {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
+    margin: 10px 0;
+    max-width: 600px;
+    /* Set a maximum width */
+}
+
+header .search-container input {
+    padding: 5px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    flex-grow: 1;
+    max-width: 50%;
+    /* Ensure the input does not become too wide */
+}
+
+header .search-container button {
+    padding: 5px 10px;
+    font-size: 1em;
+    cursor: pointer;
+    border: 1px;
+    border-radius: 0 5px 5px 0;
+    background-color: #629584;
+    color: #EEEEEE;
+    font-family: 'Montserrat', bold;
+}
+
+
+header a {
+    color: white;
+    /* Ubah warna tautan menjadi putih */
+    text-decoration: none;
+    /* Hilangkan garis bawah tautan */
+}
+#top-bar {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    position: relative;
+    transition: color 0.3s;
+}
+
+/* Hover effect */
+#top-bar:hover {
+    color: #4CAF50; /* Ubah warna teks */
+}
+
+#top-bar::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #4CAF50; /* Warna garis */
+    transition: width 0.3s;
+}
+
+/* Menampilkan garis saat hover */
+#top-bar:hover::after {
+    width: 100%;
+}
+
+/* Garis untuk elemen yang aktif */
+#top-bar.active::after {
+    width: 100%;
+    background-color: #2E7D32; /* Warna garis ketika aktif */
+}
+#top-bar.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #4CAF50; /* Warna garis */
+}
+#top-bar.active {
+    color: #4CAF50; /* Warna teks halaman aktif */
+    font-weight: bold; /* Opsional: Tambahkan gaya tebal */
+}
+
+.slider-container {
+    position: relative;
+    width: 1000px;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: auto;
+}
+
+.slider {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.container-bhanner {
+    display: flex;
+    /* Tata letak horizontal */
+    align-items: center;
+    /* Vertikal rata tengah */
+    justify-content: space-between;
+    /* Ruang antar elemen */
+    width: 100%;
+    /* Sesuaikan lebar container */
+    max-width: 1450px;
+    /* Batas lebar maksimal */
+    margin: 0 auto 40px;
+    /* Tengah horizontal */
+    gap: 20px;
+    /* Jarak antar elemen */
+    padding: 20px;
+    /* Ruang dalam container */
+    box-sizing: border-box;
+
+    border-radius: 10px;
+    /* Sertakan padding ke dalam lebar */
+}
+
+.slider-container {
+    flex: 2;
+    /* Lebih lebar dibanding elemen kanan */
+    position: relative;
+    /* Untuk tombol navigasi */
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    /* Potong elemen yang keluar */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    /* Animasi pergeseran slider */
+    width: 100%;
+}
+
+.slide {
+    flex-shrink: 0;
+    /* Tidak mengecil */
+    width: 100%;
+    /* Penuhi lebar slider */
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Menyesuaikan gambar */
+    border-radius: 10px;
+}
+
+.right-bhanner {
+    flex: 1;
+    /* Lebih sempit dibanding slider */
+    display: flex;
+    flex-direction: column;
+    /* Tata letak vertikal */
+    align-items: center;
+    /* Pusatkan isi */
+    gap: 15px;
+    width: 100%;
+    /* Jarak antar gambar */
+}
+
+.right-bhanner img {
+    height: 115px;
+    width: 500px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button#but {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: none;
+    font-size: 24px;
+    
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+
+}
+
+button#but:hover {
+    background-color: rgba(233, 233, 233, 0.8);
+}
+
+button.prev {
+    left: 10px;
+}
+
+button.next {
+    right: 10px;
+}
+
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    height: 100px;
+    max-width: 100%;
+    margin: 20px;
+}
+
+.icon-item {
+  
+  
+    
+   
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.icon-item img {
+    width: 75px;
+    height: 75px;
+
+}
+
+.icon-item p {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.icon-item:hover {
+    transform: translateY(-5px);
+}
+
+.product-container {
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+
+
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 200px;
+    height: 170px;
+    border-radius: 10px;
+}
+
+
+.checked {
+    color: orange;
+
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #387478;
+}
+
+.discount {
+    font-size: 14px;
+    color: #888;
+    text-decoration: line-through;
+    margin-left: 5px;
+}
+
+.location {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    border: 2px solid #387478;
+}
+
+.container-footer {
+    background-color: #387478;
+}
+footer {
+    margin-top: 10px;
+    background-color: #387478;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+footer .footer-logo h1 {
+    font-size: 24px;
+    color: #fff;
+}
+
+footer .footer-content p {
+    margin: 0;
+}
+
+footer .footer-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    padding: 0;
+}
+
+footer .footer-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+footer .social-media a {
+    margin: 0 10px;
+  
+}
+
+footer .social-media img {
+    width: 25px;
+    padding: 15px;
+
+}
+
+#sp{
+    color: #fff;
+}
+footer .social-media {
+    display: flex;
+
+    gap: 10px; 
+    align-items: center; 
+}
+
+footer .social-media a {
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    color: white; 
+    text-decoration: none; 
+    font-size: 16px;
+}
+
+footer .social-media img {
+    width: 20px; 
+    height: 20px; 
+    margin: 0;
+    padding: 0; 
+}
+.footer-logo{
+    display: flex;
+    align-items: center;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+
+    header .logo {
+        margin-bottom: 10px;
+    }
+
+    header .search-container {
+        width: 100%;
+        max-width: none;
+        /* Remove the maximum width constraint on smaller screens */
+    }
+
+    header .search-container input {
+        max-width: 100%;
+        /* Ensure the input uses the full available width */
+    }
+
+    header .menu {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card {
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+
+    header .logo {
+        font-size: 1.2em;
+    }
+
+    header .search-container input {
+        font-size: 0.9em;
+    }
+
+    header .search-container button {
+        font-size: 0.9em;
+    }
+
+    header .menu div {
+        font-size: 1.2em;
+    }
+
+    .product-card h3 {
+        font-size: 1em;
+    }
+
+    .product-card p {
+        font-size: 0.8em;
+    }
+
+    .quantity button,
+    .quantity span {
+        font-size: 0.9em;
+    }
+
+    .actions .buy-button {
+        font-size: 1em;
+    }
+}

@@ -1,0 +1,298 @@
+<?php
+session_start();
+include "koneksi.php";
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id_produk = $_POST['id_produk'];
+    $quantity = $_POST['quantity'];
+    $action = $_POST['action'];
+
+    // Fetch product details from the database
+    $stmt = $koneksi->prepare("SELECT id, nama, harga, gambar, rekening FROM plants WHERE id = ?");
+    $stmt->bind_param("i", $id_produk);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $product = $result->fetch_assoc();
+
+    // Add product to the session cart
+    if ($product) {
+        $product['quantity'] = $quantity;
+
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
+        }
+
+        $_SESSION['cart'][$id_produk] = $product;
+    }
+
+    $stmt->close();
+
+    if ($action == 'buy') {
+        $total = $product['harga'] * $quantity;
+        $rekening = $product['rekening'];
+        $koneksi->close();
+        header("Location: payment.php?total=$total&rekening=$rekening");
+        exit();
+    } else {
+        $koneksi->close();
+        header("Location: basket.php");
+        exit();
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flora Trade Indonesia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style-shop.css">
+    <style>
+        /* Additional CSS for square images */
+        .product-image {
+            width: 100%;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 100%; /* This creates a square aspect ratio (1:1) */
+            overflow: hidden;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the container without stretching */
+        }
+
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-container .icon {
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .quantity-container .quantity {
+            margin: 0 10px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0; /* Tetapkan dropdown di sebelah kanan ikon */
+            top: 70px; /* Jarak dari atas ikon, disesuaikan sesuai kebutuhan */
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown-content-m {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0; /* Tetapkan dropdown di sebelah kanan ikon */
+            top: 70px; /* Jarak dari atas ikon, disesuaikan sesuai kebutuhan */
+        }
+
+        .dropdown-content-m a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content-m a:hover {
+            background-color: #f1f1f1;
+        }
+
+        @media screen and (max-width: 600px) {
+            .dropdown-content,
+            .dropdown-content-m {
+                top: 170px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html"><img src="img/logo.svg" alt="Logo"></a>
+        <h1>FLORA TRADE INDONESIA</h1>
+    </div>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button onclick="performSearch()">Search</button>
+    </div>
+    <div class="menu">
+        <div class="cart-icon"><a href="basket.php" class="icon-shop"><i data-feather="shopping-cart"></i></a></div>
+        <div class="notification-icon">
+            <span class="icon-notif" onclick="toggleDropdown('dropdown-m', event)"><i data-feather="bell"></i></span>
+        </div>
+        <div class="menu-icon">
+            <span class="icon-menu" onclick="toggleDropdown('dropdown', event)"><i data-feather="align-right"></i></span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="top-bar-right">
+            <div class="profile-menu" style="display: inline-block;">
+                <div id="dropdown" class="dropdown-content">
+                    <a href="profil.php">Akun Saya</a>
+                    <a href="input_tanaman.php">Tambah Product Saya</a>
+                    <a href="logout.php">Log Out</a>
+                </div>
+            </div>
+            <div class="notif-menu" style="display: inline-block;">
+                <div id="dropdown-m" class="dropdown-content-m">
+                    <a href="#">Notifikasi 1</a>
+                    <a href="#">Notifikasi 2</a>
+                    <a href="#">Notifikasi 3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="product-grid">
+        <?php
+        // Check if a search query is set
+        $search_query = isset($_GET['search']) ? $_GET['search'] : '';
+
+        // Prepare the SQL query with a LIKE clause to filter results
+        $sql = "SELECT id, nama, deskripsi, harga, gambar FROM plants";
+        if (!empty($search_query)) {
+            $sql .= " WHERE nama LIKE '%" . $koneksi->real_escape_string($search_query) . "%' OR deskripsi LIKE '%" . $koneksi->real_escape_string($search_query) . "%'";
+        }
+
+        $result = $koneksi->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<div class="product-card">';
+                echo '<div class="product-image">';
+                echo '<div class="image-container">';
+                echo '<img src="img/tanaman/' . $row['gambar'] . '" alt="' . $row['nama'] . '">';
+                echo '</div>';
+                echo '</div>';
+                echo '<h3>' . $row['nama'] . '</h3>';
+                echo '<p>' . $row['deskripsi'] . '</p>';
+                echo '<div class="quantity">';
+                echo '<button onclick="decreaseQuantity(this)">-</button>';
+                echo '<span>1</span>';
+                echo '<button onclick="increaseQuantity(this)">+</button>';
+                echo '</div>';
+                echo '<div class="actions">';
+                echo '<form action="shop.php" method="post">';
+                echo '<input type="hidden" name="id_produk" value="' . $row['id'] . '">';
+                echo '<input type="hidden" name="quantity" value="1">';
+                echo '<button class="cart-button" type="submit" name="action" value="cart">KERANJANG</button>';
+                echo '<button class="buy-button" type="submit" name="action" value="buy">Rp ' . number_format($row['harga'], 0, ',', '.') . '</button>';
+                echo '</form>';
+                echo '</div>';
+                echo '</div>';
+            }
+        } else {
+            echo '<p>No plants found.</p>';
+        }
+
+        $koneksi->close();
+        ?>
+    </div>
+</main>
+
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    feather.replace();
+});
+
+function increaseQuantity(button) {
+    var quantitySpan = button.previousElementSibling;
+    var quantity = parseInt(quantitySpan.textContent);
+    quantitySpan.textContent = quantity + 1;
+    var quantityInput = button.parentElement.nextElementSibling.querySelector('input[name="quantity"]');
+    quantityInput.value = quantity + 1;
+}
+
+function decreaseQuantity(button) {
+    var quantitySpan = button.nextElementSibling;
+    var quantity = parseInt(quantitySpan.textContent);
+    if (quantity > 1) {
+        quantitySpan.textContent = quantity - 1;
+        var quantityInput = button.parentElement.nextElementSibling.querySelector('input[name="quantity"]');
+        quantityInput.value = quantity - 1;
+    }
+}
+
+function toggleDropdown(id, event) {
+    event.stopPropagation();
+    var dropdown = document.getElementById(id);
+    if (dropdown.style.display === "block") {
+        dropdown.style.display = "none";
+    } else {
+        closeAllDropdowns();
+        dropdown.style.display = "block";
+    }
+}
+
+function closeAllDropdowns() {
+    var dropdowns = document.querySelectorAll('.dropdown-content, .dropdown-content-m');
+    dropdowns.forEach(function(dropdown) {
+        dropdown.style.display = "none";
+    });
+}
+
+window.onclick = function(event) {
+    if (!event.target.closest('.profile-menu') && !event.target.closest('.menu-icon') && !event.target.closest('.notification-icon')) {
+        closeAllDropdowns();
+    }
+}
+
+function performSearch() {
+    var searchInput = document.getElementById('searchInput');
+    var searchQuery = searchInput.value.trim();
+
+    if (searchQuery !== '') {
+        window.location.href = 'shop.php?search=' + encodeURIComponent(searchQuery);
+    } else {
+        // Handle empty search case if needed
+        // For now, let's assume we don't do anything on empty search
+    }
+}
+</script>
+
+</body>
+</html>
